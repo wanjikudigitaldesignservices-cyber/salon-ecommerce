@@ -5,6 +5,7 @@ import { ServiceCard } from '@/components/ServiceCard'
 import { ProductCard } from '@/components/ProductCard'
 import { useEffect, useState } from 'react'
 import { getProducts, getServices, getTestimonials, getGallery } from '@/api/supabase'
+import heroBg from '@/assets/hero-bg.jpg'
 
 export default function Home() {
   const [products, setProducts] = useState<any[]>([])
@@ -40,7 +41,7 @@ export default function Home() {
       <section className="relative h-[90vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://images.unsplash.com/photo-1521590832167-7bfc17484d20?q=80&w=2070" 
+            src={heroBg} 
             alt="Salon interior" 
             className="w-full h-full object-cover object-center"
           />
