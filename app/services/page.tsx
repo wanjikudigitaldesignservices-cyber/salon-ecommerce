@@ -1,6 +1,8 @@
+'use client';
+
 import { useState, useEffect } from 'react'
 import { getServices } from '@/api/supabase'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { motion } from 'framer-motion'
 import { Clock } from 'lucide-react'
@@ -81,7 +83,7 @@ export default function Services() {
                           <span className="font-medium text-terracotta hidden md:block text-lg">
                             KES {service.price.toLocaleString()}
                           </span>
-                          <Link to={`/book?service=${encodeURIComponent(service.name)}`}>
+                          <Link href={`/book?service=${encodeURIComponent(service.name)}`}>
                             <Button className="rounded-none bg-charcoal text-ivory hover:bg-terracotta transition-colors px-6">
                               Book Now
                             </Button>

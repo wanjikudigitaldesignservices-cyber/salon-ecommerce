@@ -1,14 +1,18 @@
+'use client';
+
 import { useState, useEffect } from 'react'
-import { useSearchParams } from 'react-router-dom'
+import { useSearchParams } from 'next/navigation'
 import { getServices, createAppointmentRequest } from '@/api/supabase'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { toast } from 'sonner'
 import { Calendar, Clock, User, Phone, CheckCircle, MessageCircle } from 'lucide-react'
 
-export default function BookAppointment() {
-  const [searchParams] = useSearchParams()
-  const preselectedService = searchParams.get('service')
+import { Suspense } from 'react'
+
+function BookAppointmentForm() {
+  const searchParams = useSearchParams()
+  const preselectedService = searchParams ? searchParams.get('service') : ''
   
   const [services, setServices] = useState<any[]>([])
   const [loading, setLoading] = useState(false)
@@ -52,7 +56,7 @@ export default function BookAppointment() {
   }
 
   const handleWhatsAppConfirm = () => {
-    const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER || '254700000000'
+    const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '254700000000'
     const message = `Hi, I just booked an appointment online and wanted to confirm.\n\nName: ${formData.full_name}\nService: ${formData.service}\nDate: ${formData.preferred_date}\nTime: ${formData.preferred_time}`
     window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, '_blank')
   }
@@ -195,5 +199,13 @@ export default function BookAppointment() {
         </form>
       </div>
     </div>
+  )
+}
+
+export default function BookAppointment() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-ivory flex flex-col items-center justify-center text-charcoal">Loading...</div>}>
+      <BookAppointmentForm />
+    </Suspense>
   )
 }

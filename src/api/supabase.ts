@@ -1,8 +1,8 @@
 import { createClient } from '@supabase/supabase-js'
 import { mockProducts, mockServices, mockTestimonials, mockGallery } from './mockData'
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 
 // Create a Supabase client only if env vars are present
 export const supabase = supabaseUrl && supabaseAnonKey 
@@ -13,9 +13,9 @@ export const supabase = supabaseUrl && supabaseAnonKey
 
 export async function getProducts(type?: 'beauty_product' | 'wig') {
   if (supabase) {
-    let query = supabase.from('products').select('*, categories!inner(*)')
+    let query = supabase.from('products').select('*, product_categories!inner(*)')
     if (type) {
-      query = query.eq('categories.type', type)
+      query = query.eq('product_categories.type', type)
     }
     const { data, error } = await query
     if (error) throw error
@@ -32,7 +32,7 @@ export async function getProducts(type?: 'beauty_product' | 'wig') {
 
 export async function getProductBySlug(slug: string) {
   if (supabase) {
-    const { data, error } = await supabase.from('products').select('*').eq('slug', slug).single()
+    const { data, error } = await supabase.from('products').select('*, product_categories(*)').eq('slug', slug).single()
     if (error) throw error
     return data
   }
@@ -44,6 +44,11 @@ export async function getProductBySlug(slug: string) {
 }
 
 export async function getServices() {
+  if (supabase) {
+    const { data, error } = await supabase.from('services').select('*')
+    if (error) throw error
+    return data
+  }
   return new Promise((resolve) => {
     setTimeout(() => resolve(mockServices), 500)
   })

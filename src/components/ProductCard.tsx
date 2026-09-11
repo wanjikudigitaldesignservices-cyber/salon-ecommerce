@@ -1,4 +1,6 @@
-import { Link } from 'react-router-dom'
+'use client';
+
+import Link from 'next/link'
 import { useCartStore } from '@/store/cartStore'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
@@ -37,7 +39,7 @@ export function ProductCard({ product }: ProductProps) {
   const isWig = product.category_type === 'wig'
 
   return (
-    <Link to={isWig ? `/wigs/${product.slug}` : `/shop/${product.slug}`} className="group">
+    <Link href={isWig ? `/wigs/${product.slug}` : `/shop/${product.slug}`} className="group">
       <Card className="rounded-none border-border overflow-hidden bg-white shadow-sm transition-all hover:shadow-md h-full flex flex-col">
         <div className="relative aspect-[4/5] overflow-hidden bg-muted">
           <img 

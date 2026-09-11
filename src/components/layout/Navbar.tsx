@@ -1,4 +1,7 @@
-import { Link, useLocation } from 'react-router-dom'
+'use client';
+
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { Logo } from '../Logo'
 import { useCartStore } from '@/store/cartStore'
 import { ShoppingCart, Menu, X } from 'lucide-react'
@@ -10,7 +13,7 @@ export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const cartItems = useCartStore(state => state.items)
   const cartCount = cartItems.reduce((acc, item) => acc + item.quantity, 0)
-  const location = useLocation()
+  const location = usePathname()
 
   const navLinks = [
     { name: 'Home', path: '/' },
@@ -22,14 +25,14 @@ export function Navbar() {
   ]
 
   const isActive = (path: string) => {
-    if (path === '/' && location.pathname !== '/') return false
-    return location.pathname.startsWith(path)
+    if (path === '/' && location !== '/') return false
+    return location.startsWith(path)
   }
 
   return (
     <header className="sticky top-0 z-50 w-full bg-ivory/80 backdrop-blur-md hairline-divider">
       <div className="container mx-auto px-4 h-20 flex items-center justify-between">
-        <Link to="/" className="z-50">
+        <Link href="/" className="z-50">
           <Logo lockup="horizontal" size="sm" />
         </Link>
 
@@ -38,7 +41,7 @@ export function Navbar() {
           {navLinks.map((link) => (
             <Link
               key={link.name}
-              to={link.path}
+              href={link.path}
               className={cn(
                 "text-sm font-medium transition-colors hover:text-rosegold",
                 isActive(link.path) ? "text-charcoal" : "text-charcoal/60"
@@ -50,13 +53,13 @@ export function Navbar() {
         </nav>
 
         <div className="flex items-center gap-4 z-50">
-          <Link to="/book" className="hidden md:block">
+          <Link href="/book" className="hidden md:block">
             <Button className="bg-terracotta hover:bg-terracotta/90 text-ivory rounded-none">
               Book Now
             </Button>
           </Link>
           
-          <Link to="/cart" className="relative p-2">
+          <Link href="/cart" className="relative p-2">
             <ShoppingCart className="h-5 w-5 text-charcoal hover:text-rosegold transition-colors" />
             {cartCount > 0 && (
               <span className="absolute top-0 right-0 bg-terracotta text-ivory text-[10px] font-bold h-4 w-4 rounded-full flex items-center justify-center">
@@ -81,14 +84,14 @@ export function Navbar() {
             {navLinks.map((link) => (
               <Link
                 key={link.name}
-                to={link.path}
+                href={link.path}
                 className="text-2xl font-serif text-charcoal hover:text-rosegold"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {link.name}
               </Link>
             ))}
-            <Link to="/book" onClick={() => setIsMobileMenuOpen(false)} className="mt-4 w-full">
+            <Link href="/book" onClick={() => setIsMobileMenuOpen(false)} className="mt-4 w-full">
               <Button className="w-full bg-terracotta hover:bg-terracotta/90 text-ivory rounded-none h-12 text-lg">
                 Book Appointment
               </Button>

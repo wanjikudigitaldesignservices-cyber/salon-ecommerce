@@ -1,9 +1,9 @@
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import { Logo } from '../Logo'
 import { Camera, MapPin, Phone, MessageCircle } from 'lucide-react'
 
 export function Footer() {
-  const WHATSAPP_NUMBER = import.meta.env.VITE_WHATSAPP_NUMBER || '254700000000'
+  const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '254700000000'
   const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}`
 
   return (
@@ -20,19 +20,19 @@ export function Footer() {
           <div>
             <h4 className="font-serif font-bold text-lg mb-6">Explore</h4>
             <ul className="space-y-4">
-              <li><Link to="/services" className="text-ivory/70 hover:text-rosegold transition-colors">Services Menu</Link></li>
-              <li><Link to="/shop" className="text-ivory/70 hover:text-rosegold transition-colors">Beauty Shop</Link></li>
-              <li><Link to="/wigs" className="text-ivory/70 hover:text-rosegold transition-colors">Wigs Collection</Link></li>
-              <li><Link to="/gallery" className="text-ivory/70 hover:text-rosegold transition-colors">Gallery</Link></li>
+              <li><Link href="/services" className="text-ivory/70 hover:text-rosegold transition-colors">Services Menu</Link></li>
+              <li><Link href="/shop" className="text-ivory/70 hover:text-rosegold transition-colors">Beauty Shop</Link></li>
+              <li><Link href="/wigs" className="text-ivory/70 hover:text-rosegold transition-colors">Wigs Collection</Link></li>
+              <li><Link href="/gallery" className="text-ivory/70 hover:text-rosegold transition-colors">Gallery</Link></li>
             </ul>
           </div>
 
           <div>
             <h4 className="font-serif font-bold text-lg mb-6">Company</h4>
             <ul className="space-y-4">
-              <li><Link to="/about" className="text-ivory/70 hover:text-rosegold transition-colors">About Us</Link></li>
-              <li><Link to="/contact" className="text-ivory/70 hover:text-rosegold transition-colors">Contact & Location</Link></li>
-              <li><Link to="/book" className="text-ivory/70 hover:text-rosegold transition-colors">Book Appointment</Link></li>
+              <li><Link href="/about" className="text-ivory/70 hover:text-rosegold transition-colors">About Us</Link></li>
+              <li><Link href="/contact" className="text-ivory/70 hover:text-rosegold transition-colors">Contact & Location</Link></li>
+              <li><Link href="/book" className="text-ivory/70 hover:text-rosegold transition-colors">Book Appointment</Link></li>
             </ul>
           </div>
 
@@ -59,8 +59,8 @@ export function Footer() {
         <div className="pt-8 border-t border-ivory/10 text-center text-ivory/40 text-sm flex flex-col md:flex-row justify-between items-center gap-4">
           <p>&copy; {new Date().getFullYear()} The Modern Salon. All rights reserved.</p>
           <div className="flex gap-6">
-            <Link to="#" className="hover:text-ivory transition-colors">Privacy Policy</Link>
-            <Link to="#" className="hover:text-ivory transition-colors">Terms of Service</Link>
+            <Link href="#" className="hover:text-ivory transition-colors">Privacy Policy</Link>
+            <Link href="#" className="hover:text-ivory transition-colors">Terms of Service</Link>
           </div>
         </div>
       </div>
@@ -78,3 +78,4 @@ export function Footer() {
     </footer>
   )
 }
+

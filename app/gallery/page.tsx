@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useEffect } from 'react'
 import { getGallery } from '@/api/supabase'
 import { motion, AnimatePresence } from 'framer-motion'

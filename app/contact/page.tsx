@@ -1,3 +1,5 @@
+'use client';
+
 import { motion } from 'framer-motion'
 import { MapPin, Phone, Clock, Camera, MessageCircle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -7,8 +9,8 @@ import { toast } from 'sonner'
 
 export default function Contact() {
   const [loading, setLoading] = useState(false)
-  const salonName = import.meta.env.VITE_SALON_NAME || 'The Modern Salon'
-  const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER || '254700000000'
+  const salonName = process.env.NEXT_PUBLIC_SALON_NAME || 'The Modern Salon'
+  const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '254700000000'
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -154,3 +156,4 @@ export default function Contact() {
     </div>
   )
 }
+

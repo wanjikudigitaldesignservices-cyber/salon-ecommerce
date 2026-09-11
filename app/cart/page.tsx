@@ -1,4 +1,6 @@
-import { Link } from 'react-router-dom'
+'use client';
+
+import Link from 'next/link'
 import { useCartStore } from '@/store/cartStore'
 import { Button } from '@/components/ui/button'
 import { Trash2, Plus, Minus, MessageCircle } from 'lucide-react'
@@ -6,8 +8,8 @@ import { Trash2, Plus, Minus, MessageCircle } from 'lucide-react'
 export default function Cart() {
   const { items, removeItem, updateQuantity, getCartTotal, clearCart } = useCartStore()
   
-  const salonName = import.meta.env.VITE_SALON_NAME || 'The Modern Salon'
-  const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER || '254700000000'
+  const salonName = process.env.NEXT_PUBLIC_SALON_NAME || 'The Modern Salon'
+  const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '254700000000'
 
   const handleWhatsAppCheckout = () => {
     const total = getCartTotal()
@@ -39,12 +41,12 @@ export default function Cart() {
         <h2 className="font-serif text-3xl text-charcoal mb-4">Your cart is empty</h2>
         <p className="text-charcoal/60 mb-8 max-w-md">Looks like you haven't added any beauty products or wigs to your cart yet.</p>
         <div className="flex flex-col sm:flex-row gap-4">
-          <Link to="/shop">
+          <Link href="/shop">
             <Button className="rounded-none bg-charcoal text-ivory w-full sm:w-auto h-12 px-8 hover:bg-terracotta transition-colors">
               Shop Beauty Products
             </Button>
           </Link>
-          <Link to="/wigs">
+          <Link href="/wigs">
             <Button variant="outline" className="rounded-none border-charcoal text-charcoal w-full sm:w-auto h-12 px-8 hover:bg-charcoal hover:text-ivory transition-colors">
               Explore Wigs
             </Button>
@@ -72,7 +74,7 @@ export default function Cart() {
                   <div className="flex-grow flex flex-col">
                     <div className="flex justify-between items-start gap-4">
                       <div>
-                        <Link to={`/shop/${item.id}`} className="font-serif font-bold text-lg md:text-xl text-charcoal hover:text-rosegold transition-colors line-clamp-1">
+                        <Link href={`/shop/${item.id}`} className="font-serif font-bold text-lg md:text-xl text-charcoal hover:text-rosegold transition-colors line-clamp-1">
                           {item.name}
                         </Link>
                         {item.attributes && (
@@ -157,3 +159,4 @@ export default function Cart() {
     </div>
   )
 }
+

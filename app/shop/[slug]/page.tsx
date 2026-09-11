@@ -1,5 +1,7 @@
+'use client';
+
 import { useState, useEffect } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useRouter } from 'next/navigation'
 import { getProductBySlug } from '@/api/supabase'
 import { useCartStore } from '@/store/cartStore'
 import { Button } from '@/components/ui/button'
@@ -8,7 +10,7 @@ import { ArrowLeft, Minus, Plus } from 'lucide-react'
 
 export default function ProductDetail() {
   const { slug } = useParams<{ slug: string }>()
-  const navigate = useNavigate()
+  const router = useRouter()
   const [product, setProduct] = useState<any>(null)
   const [loading, setLoading] = useState(true)
   const [quantity, setQuantity] = useState(1)
@@ -39,7 +41,7 @@ export default function ProductDetail() {
     return (
       <div className="min-h-screen bg-ivory flex flex-col items-center justify-center text-charcoal">
         <h2 className="font-serif text-3xl mb-4">Product Not Found</h2>
-        <Button variant="outline" onClick={() => navigate(-1)} className="rounded-none">Go Back</Button>
+        <Button variant="outline" onClick={() => router.back()} className="rounded-none">Go Back</Button>
       </div>
     )
   }
@@ -62,7 +64,7 @@ export default function ProductDetail() {
     <div className="bg-ivory min-h-screen pb-24 pt-8">
       <div className="container mx-auto px-4 max-w-6xl">
         <button 
-          onClick={() => navigate(-1)}
+          onClick={() => router.back()}
           className="flex items-center gap-2 text-charcoal/60 hover:text-charcoal transition-colors mb-8"
         >
           <ArrowLeft className="h-4 w-4" />

@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Clock } from 'lucide-react'
@@ -41,7 +41,7 @@ export function ServiceCard({ service }: ServiceProps) {
           <span>{service.duration}</span>
         </div>
         
-        <Link to={`/book?service=${encodeURIComponent(service.name)}`} className="mt-auto block w-full">
+        <Link href={`/book?service=${encodeURIComponent(service.name)}`} className="mt-auto block w-full">
           <Button variant="outline" className="w-full rounded-none border-charcoal text-charcoal hover:bg-charcoal hover:text-ivory transition-colors">
             Book This Service
           </Button>

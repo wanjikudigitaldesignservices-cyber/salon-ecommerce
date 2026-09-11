@@ -1,3 +1,5 @@
+'use client';
+
 import { motion } from 'framer-motion'
 
 export default function AboutUs() {
@@ -6,7 +8,7 @@ export default function AboutUs() {
     visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
   }
 
-  const salonName = import.meta.env.VITE_SALON_NAME || 'The Modern Salon'
+  const salonName = process.env.NEXT_PUBLIC_SALON_NAME || 'The Modern Salon'
 
   return (
     <div className="bg-ivory min-h-screen pb-24">
@@ -82,3 +84,5 @@ export default function AboutUs() {
     </div>
   )
 }
+
+

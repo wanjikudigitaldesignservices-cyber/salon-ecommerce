@@ -1,4 +1,6 @@
-import { Link } from 'react-router-dom'
+'use client';
+
+import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { ServiceCard } from '@/components/ServiceCard'
@@ -12,7 +14,7 @@ export default function Home() {
   const [services, setServices] = useState<any[]>([])
   const [testimonials, setTestimonials] = useState<any[]>([])
   const [gallery, setGallery] = useState<any[]>([])
-  const salonName = import.meta.env.VITE_SALON_NAME || 'The Modern Salon'
+  const salonName = process.env.NEXT_PUBLIC_SALON_NAME || 'The Modern Salon'
 
   useEffect(() => {
     async function loadData() {
@@ -41,7 +43,7 @@ export default function Home() {
       <section className="relative h-[90vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img 
-            src={heroBg} 
+            src={heroBg.src} 
             alt="Salon interior" 
             className="w-full h-full object-cover object-center"
           />
@@ -61,12 +63,12 @@ export default function Home() {
             Experience luxury treatments and curated products at {salonName}, your sanctuary for modern aesthetics in Kilimani.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/book">
+            <Link href="/book">
               <Button size="lg" className="rounded-none bg-terracotta hover:bg-terracotta/90 text-ivory px-8 h-14 w-full sm:w-auto text-lg">
                 Book Appointment
               </Button>
             </Link>
-            <Link to="/shop">
+            <Link href="/shop">
               <Button size="lg" variant="outline" className="rounded-none border-ivory text-ivory hover:bg-ivory hover:text-charcoal px-8 h-14 w-full sm:w-auto text-lg bg-transparent">
                 Shop Products
               </Button>
@@ -100,7 +102,7 @@ export default function Home() {
             <h2 className="font-serif text-4xl text-charcoal mb-2">Signature Services</h2>
             <p className="text-charcoal/60">Tailored treatments for your unique needs.</p>
           </div>
-          <Link to="/services">
+          <Link href="/services">
             <Button variant="link" className="text-terracotta p-0 hover:no-underline hover:text-charcoal transition-colors">
               View Full Menu &rarr;
             </Button>
@@ -128,7 +130,7 @@ export default function Home() {
               <h2 className="font-serif text-4xl text-charcoal mb-2">Curated Beauty</h2>
               <p className="text-charcoal/60">Salon-quality products for your daily routine.</p>
             </div>
-            <Link to="/shop">
+            <Link href="/shop">
               <Button variant="link" className="text-terracotta p-0 hover:no-underline hover:text-charcoal transition-colors">
                 Shop All Products &rarr;
               </Button>
@@ -157,7 +159,7 @@ export default function Home() {
           <h2 className="font-serif text-5xl md:text-6xl text-ivory mb-6 max-w-2xl leading-tight">
             The Ultimate <br className="hidden md:block"/> Wig Collection
           </h2>
-          <Link to="/wigs">
+          <Link href="/wigs">
             <Button size="lg" className="rounded-none bg-ivory text-charcoal hover:bg-rosegold hover:text-ivory px-8 h-14">
               Explore Collection
             </Button>
@@ -186,7 +188,7 @@ export default function Home() {
       {/* Gallery Strip */}
       <section className="grid grid-cols-2 md:grid-cols-6 h-64 md:h-80">
         {gallery.map(img => (
-          <Link key={img.id} to="/gallery" className="relative group overflow-hidden block h-full w-full">
+          <Link key={img.id} href="/gallery" className="relative group overflow-hidden block h-full w-full">
             <img src={img.image_url} alt="Gallery" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
             <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white font-serif text-xl">
               View
@@ -197,3 +199,4 @@ export default function Home() {
     </div>
   )
 }
+

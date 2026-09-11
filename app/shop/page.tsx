@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useEffect } from 'react'
 import { getProducts } from '@/api/supabase'
 import { ProductCard } from '@/components/ProductCard'
