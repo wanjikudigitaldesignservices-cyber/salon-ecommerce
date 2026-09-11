@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { MapPin, Phone, Clock, Instagram, MessageCircle } from 'lucide-react'
+import { MapPin, Phone, Clock, Camera, MessageCircle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { useState } from 'react'
@@ -84,7 +84,7 @@ export default function Contact() {
                 href="#"
                 className="flex items-center gap-2 border border-charcoal text-charcoal px-6 py-3 hover:bg-charcoal hover:text-ivory transition-colors"
               >
-                <Instagram className="h-5 w-5" />
+                <Camera className="h-5 w-5" />
                 Instagram
               </a>
             </div>

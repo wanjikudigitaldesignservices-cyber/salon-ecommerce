@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { Logo } from '../Logo'
-import { Instagram, MapPin, Phone, MessageCircle } from 'lucide-react'
+import { Camera, MapPin, Phone, MessageCircle } from 'lucide-react'
 
 export function Footer() {
   const WHATSAPP_NUMBER = import.meta.env.VITE_WHATSAPP_NUMBER || '254700000000'
@@ -49,7 +49,7 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-3 mt-4">
                 <a href="#" className="hover:text-rosegold transition-colors">
-                  <Instagram className="h-6 w-6" />
+                  <Camera className="h-6 w-6" />
                 </a>
               </li>
             </ul>
