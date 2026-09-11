@@ -68,27 +68,49 @@ export default function Services() {
                   </h2>
                   <div className="space-y-4">
                     {categoryServices.map(service => (
-                      <div key={service.id} className="bg-white border border-border p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:shadow-md transition-shadow">
-                        <div className="flex-grow">
-                          <div className="flex justify-between items-start md:items-center mb-2">
-                            <h3 className="font-serif font-semibold text-xl text-charcoal">{service.name}</h3>
-                            <span className="font-medium text-terracotta md:hidden">KES {service.price.toLocaleString()}</span>
-                          </div>
-                          <div className="flex items-center gap-2 text-sm text-charcoal/60">
-                            <Clock className="h-4 w-4" />
-                            <span>{service.duration}</span>
+                      <div key={service.id} className="bg-white border border-border flex flex-col md:flex-row items-start md:items-stretch justify-between hover:shadow-md transition-shadow overflow-hidden">
+                        
+                        <div className="flex flex-col md:flex-row flex-grow w-full md:w-auto">
+                          {/* Image */}
+                          {service.image_url ? (
+                            <img 
+                              src={service.image_url} 
+                              alt={service.name} 
+                              className="w-full md:w-48 h-48 md:h-auto object-cover flex-shrink-0" 
+                            />
+                          ) : (
+                            <div className="w-full md:w-48 h-48 md:h-auto bg-neutral-200 flex flex-shrink-0 items-center justify-center text-charcoal/40 font-serif">
+                              No Image
+                            </div>
+                          )}
+
+                          {/* Details */}
+                          <div className="p-6 flex flex-col justify-center flex-grow">
+                            <div className="flex justify-between items-start md:items-center mb-2">
+                              <h3 className="font-serif font-semibold text-xl text-charcoal">{service.name}</h3>
+                              <span className="font-medium text-terracotta md:hidden whitespace-nowrap ml-4">
+                                KES {service.price.toLocaleString()}
+                              </span>
+                            </div>
+                            <div className="flex items-center gap-2 text-sm text-charcoal/60">
+                              <Clock className="h-4 w-4" />
+                              <span>{service.duration_minutes || service.duration || 60} min</span>
+                            </div>
                           </div>
                         </div>
-                        <div className="flex items-center gap-6 w-full md:w-auto justify-between md:justify-end border-t md:border-t-0 pt-4 md:pt-0 border-border">
-                          <span className="font-medium text-terracotta hidden md:block text-lg">
+
+                        {/* Pricing & Booking */}
+                        <div className="flex items-center gap-6 w-full md:w-auto justify-between md:justify-end border-t md:border-t-0 md:border-l p-6 border-border bg-ivory/30">
+                          <span className="font-medium text-terracotta hidden md:block text-lg whitespace-nowrap">
                             KES {service.price.toLocaleString()}
                           </span>
-                          <Link href={`/book?service=${encodeURIComponent(service.name)}`}>
-                            <Button className="rounded-none bg-charcoal text-ivory hover:bg-terracotta transition-colors px-6">
+                          <Link href={`/book?service=${encodeURIComponent(service.name)}`} className="w-full md:w-auto">
+                            <Button className="w-full rounded-none bg-charcoal text-ivory hover:bg-terracotta transition-colors px-6">
                               Book Now
                             </Button>
                           </Link>
                         </div>
+
                       </div>
                     ))}
                   </div>
