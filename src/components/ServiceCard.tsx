@@ -10,12 +10,22 @@ interface ServiceProps {
     duration: string
     price: number
     category: string
+    image?: string
   }
 }
 
 export function ServiceCard({ service }: ServiceProps) {
   return (
-    <Card className="rounded-none border-border bg-ivory shadow-sm transition-shadow hover:shadow-md h-full flex flex-col">
+    <Card className="rounded-none border-border bg-ivory shadow-sm transition-shadow hover:shadow-md h-full flex flex-col overflow-hidden">
+      {service.image && (
+        <div className="w-full aspect-video overflow-hidden">
+          <img 
+            src={service.image} 
+            alt={service.name} 
+            className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+          />
+        </div>
+      )}
       <CardContent className="p-6 flex flex-col flex-grow">
         <div className="flex justify-between items-start mb-4">
           <h3 className="font-serif font-semibold text-charcoal text-xl leading-tight pr-4">
