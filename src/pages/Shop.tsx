@@ -12,7 +12,7 @@ export default function Shop() {
     async function fetchProducts() {
       setLoading(true)
       try {
-        const data = await getProducts('beauty_product')
+        const data = await getProducts()
         setProducts(data as any[])
       } catch (error) {
         console.error("Failed to fetch products", error)
