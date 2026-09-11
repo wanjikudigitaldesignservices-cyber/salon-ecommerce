@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 35 33% 96%; /* #FAF6F1 - warm ivory */
+    --foreground: 27 12% 9%; /* #1A1714 - deep charcoal */
+    
+    --card: 35 33% 96%;
+    --card-foreground: 27 12% 9%;
+    
+    --popover: 35 33% 96%;
+    --popover-foreground: 27 12% 9%;
+    
+    --primary: 27 12% 9%;
+    --primary-foreground: 35 33% 96%;
+    
+    --secondary: 25 43% 62%; /* #C99B7A - rose-gold */
+    --secondary-foreground: 27 12% 9%;
+    
+    --muted: 30 10% 90%;
+    --muted-foreground: 27 10% 40%;
+    
+    --accent: 25 43% 62%;
+    --accent-foreground: 27 12% 9%;
+    
+    --destructive: 15 45% 50%; /* #B5654A - terracotta */
+    --destructive-foreground: 35 33% 96%;
+
+    --border: 30 10% 85%;
+    --input: 30 10% 85%;
+    --ring: 27 12% 9%;
+
+    --radius: 0.25rem;
+  }
+
+  .dark {
+    --background: 27 12% 9%; /* #1A1714 */
+    --foreground: 35 33% 96%; /* #FAF6F1 */
+    
+    --card: 27 12% 9%;
+    --card-foreground: 35 33% 96%;
+    
+    --popover: 27 12% 9%;
+    --popover-foreground: 35 33% 96%;
+    
+    --primary: 35 33% 96%;
+    --primary-foreground: 27 12% 9%;
+    
+    --secondary: 25 43% 62%;
+    --secondary-foreground: 35 33% 96%;
+    
+    --muted: 27 10% 15%;
+    --muted-foreground: 30 10% 60%;
+    
+    --accent: 25 43% 62%;
+    --accent-foreground: 35 33% 96%;
+    
+    --destructive: 15 45% 50%;
+    --destructive-foreground: 35 33% 96%;
+    
+    --border: 27 10% 20%;
+    --input: 27 10% 20%;
+    --ring: 35 33% 96%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+  }
+}
+
+/* Hairline dividers for premium feel */
+.hairline-divider {
+  border-bottom: 1px solid theme('colors.border');
+}
